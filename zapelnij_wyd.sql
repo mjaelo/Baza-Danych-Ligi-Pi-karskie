@@ -117,7 +117,9 @@ BEGIN
 END;
 delete from Wydarzenia where Sezon=@limit_lat+1 --bo generuje sie 1 pozycja za duzo
 
-
+/*
 select * from Wydarzenia
 order by Sezon,[ID Meczu],[Czas Wydarzenia]
+*/
+
 --select Imie,Nazwisko,[Opis Wydarzenia],[ID Meczu] from Wydarzenia w,Zawodnicy z where w.[ID Zawodnika]=z.[ID Zawodnika]

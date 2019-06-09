@@ -13,4 +13,4 @@ insert into Druzyny values
 ('Sydney Fc',10,'Sydney'),
 ('Paris Saint Germain',11,'Pary¿');
 
-select * from Druzyny
+--select * from Druzyny

@@ -9,7 +9,7 @@ set @id_poz =
 set @id_dr =
 	(select max([Powiazanie Zawodnika z Druzyna].[ID Druzyny])from [Powiazanie Zawodnika z Druzyna]);
 set @Sezon =
-	(select max([Powiazanie Zawodnika z Druzyna].Sezon)from [Powiazanie Zawodnika z Druzyna]);
+	(Select [Rok Pierwszy]from Limity where [ID Ligi]=@id_ligi);
 
 set @limit_zaw  = (Select [Limit Zawodnikow w Druzynie]from Limity where [ID Ligi]=@id_ligi)	
 set @limit_dr  =(Select [Limit Druzyn w Lidze] from Limity where [ID Ligi]=@id_ligi)		
@@ -55,7 +55,7 @@ delete from [Powiazanie Zawodnika z Druzyna] where Sezon=@limit_lat+1 --bo gener
 set @random =0
 set @rid  = 0
 set @dru =0
-set @Sezon=2011
+set @Sezon=@rok_pierwszy
 while @Sezon<=@limit_lat
 begin
 	set @id_zaw=1
@@ -81,19 +81,11 @@ begin
 end;
 
 
-
+/*
 select * from [Powiazanie Zawodnika z Druzyna]
 where [ID Druzyny]!=0
-order by [Sezon]
+order by [Sezon]*/
 
 
 
-/*
-select Imiê,Nazwisko,[Nazwa Druzyny],[Nazwa Pozycji],s.Sezon
-from [Powiazanie Zawodnika z Druzyna] id,Zawodnicy z, Druzyny d,Pozycja p, Sezony s
-where z.[ID Zawodnika]=id.[ID Zawodnika] 
-and d.[ID Druzyny]=id.[ID Druzyny]
-and p.[ID Pozycji]=id.[ID Pozycji]
-and id.[ID Druzyny]=s.[ID Zwyciêscy]
-order by s.sezon
-*/
+

@@ -1,0 +1,5 @@
+{
+    "unique" : false,
+    "input" : "names.json",
+    "output" : "output.sql"
+}

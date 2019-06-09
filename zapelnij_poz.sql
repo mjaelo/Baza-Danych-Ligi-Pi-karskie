@@ -17,4 +17,4 @@ BEGIN
 end;
 
 
-select * from Pozycja
+--select * from Pozycja

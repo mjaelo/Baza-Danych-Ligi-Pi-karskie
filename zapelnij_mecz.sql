@@ -46,6 +46,6 @@ delete from Mecz where Sezon=@limit_lat+1 --bo generuje sie 1 pozycja za duzo
 
 
 
-select * from Mecz;
+--select * from Mecz;
 
 

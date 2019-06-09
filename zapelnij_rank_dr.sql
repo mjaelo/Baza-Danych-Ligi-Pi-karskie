@@ -1,8 +1,8 @@
 --reset tabeli 
-delete from Sezony
+delete from [Ranking Druzyn]
 
 set @id_dr  = ABS(CHECKSUM(NEWID()) % 5)
-set @sezon  = 2010
+set @sezon  = (Select [Rok Pierwszy]from Limity where [ID Ligi]=@id_ligi)	
 set @id_zaw =1
 
 set @limit_zaw  = (Select [Limit Zawodnikow w Druzynie]from Limity where [ID Ligi]=@id_ligi)	
@@ -28,7 +28,7 @@ BEGIN
 			(select count([Wynik Goscia]) from Mecz 
 			where [Wynik Goscia]>[Wynik Gospodarza] and Sezon=@sezon and [ID Goscia]=@id_dr)
 		--if @id_dr=10 select @temp,@sezon
-
+		insert into [Ranking Druzyn] values (@sezon,@id_dr,@temp);
 		if @temp>@max_d
 		begin
 			set @max_d =@temp
@@ -39,31 +39,13 @@ BEGIN
 	--select @max_id,@max_d,@sezon
 	set @id_dr=@max_id
 
-	set @id_zaw=1
-	set @max_z=0
-	set @temp=0
-	While @id_zaw<= @limit_dr*@limit_zaw
-	begin
-		set @temp=
-		(select count([ID Zawodnika]) from Wydarzenia
-		where [Opis Wydarzenia]='GOL' and Sezon=@sezon and [ID Zawodnika]=@id_zaw)
-
-		if @temp>@max_z
-		begin
-			set @max_z =@temp
-			set @max_id=@id_zaw
-		end;
-		set @id_zaw = @id_zaw+1
-	end;
-	set @id_zaw = @max_id
-	--select @max_id,@max,@sezon
-
-	insert into Sezony values (@sezon,@id_dr,@max_d,@id_zaw,@max_z);
+	--insert into [Ranking Druzyn] values (@sezon,@id_dr,@max_d);
 	set @sezon=@sezon +1
 end;
 
 
-select * from Sezony
-order by sezon
-
+/*
+select * from [Ranking Druzyn]
+order by sezon, [Wygrane Mecze Druzyny]
+*/
 
