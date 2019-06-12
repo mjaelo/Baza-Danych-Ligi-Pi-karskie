@@ -13,6 +13,14 @@ BEGIN
 		insert into Pozycja values (@poz+2,'Obronca');
 	if @limit_zaw>=@poz+3
 		insert into Pozycja values (@poz+3,'Pomocnik');
+
+	if @poz>7 --by nie bylo zbyt malo grajacych
+	begin
+	if @limit_zaw>=@poz+4
+		insert into Pozycja values (@poz+3,'Rezerwowy');
+	set @poz=@poz +4
+	end; 
+	else
 	set @poz=@poz +3
 end;
 

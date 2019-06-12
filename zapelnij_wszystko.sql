@@ -1,3 +1,79 @@
+create database Liga
+go
+use Liga
+go
+create table Liga.dbo.Druzyny
+(
+[Nazwa Druzyny] ntext,
+[Miasto] ntext,
+[ID Druzyny] int
+);
+
+create table Liga.dbo.Limity
+(
+[Rok Pierwszy] int,
+[Limit Lat] int,
+[Limit Zawodnikow w Druzynie] int,
+[Limit Druzyn w Lidze] int,
+[ID Ligi] int,
+[Nazwa Ligi] ntext
+);
+
+create table Liga.dbo.Mecz
+(
+[ID Gospodarza] int,
+[ID Goscia] int,
+[ID Meczu] int,
+[Wynik Gospodarza] int,
+[Wynik Goscia] int,
+[Sezon] int,
+);
+
+create table Liga.dbo.Pozycja
+(
+[ID Pozycji] int,
+[Nazwa Pozycji] ntext
+);
+
+create table Liga.dbo.[Powiazanie Zawodnika z Druzyna]
+(
+[ID Zawodnika] int,
+[ID Pozycji] int,
+[ID Druzyny] int,
+[Sezon] int
+);
+
+create table Liga.dbo.[Ranking Druzyn]
+(
+[ID Druzyny] int,
+[Wygrane Mecze] int,
+[Sezon] int,
+);
+
+create table Liga.dbo.[Ranking Pilkarzy]
+(
+[ID Zawodnika] int,
+[Strzelone Gole] int,
+[Sezon] int,
+);
+
+create table Liga.dbo.Wydarzenia
+(
+[Czas Wydarzenia] int,
+[Opis Wydarzenia] ntext,
+[ID Meczu] int,
+[ID Zawodnika] int,
+[ID Druzyny] int,
+[Sezon] int,
+);
+
+create table Liga.dbo.Zawodnicy
+(
+[Imie] ntext,
+[Nazwisko] ntext,
+[ID Zawodnika] int
+);
+
 
 declare @czas int = 0
 declare @id_m int = 1
